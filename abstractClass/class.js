@@ -21,42 +21,30 @@ class PieceBase {
 }
 
 class Board {
-  constructor(rows, cols) {
-    this.rows = rows;
-    this.cols = cols;
-  }
-
-  displayBoard() {
-    // Implement logic to display the current state of the game board
-    throw new Error("displayBoard method must be implemented in a concrete class");
-  }
-
-  makeMove(row, col, player) {
-    // Implement logic to make a move on the game board
-    throw new Error("makeMove method must be implemented in a concrete class");
-  }
-
-  checkWin(player) {
-    // Implement logic to check if the given player has won the game
-    throw new Error("checkWin method must be implemented in a concrete class");
-  }
-
-  checkDraw() {
-    // Implement logic to check if the game is a draw
-    throw new Error("checkDraw method must be implemented in a concrete class");
-  }
+    constructor(rows = 8, columns = 8) {
+      this.rows = rows;
+      this.columns = columns;
+      if (rows * columns !== 64) {
+        throw new Error("Board must have 64 squares (8x8)");
+      }
+    }
+    displayBoard() {}
+    makeMove() {}
+    checkWin() {}
+    checkDraw() {}
 }
+
 class Player {
-  constructor(name, symbol) {
-    this.name = name;
-    this.symbol = symbol;
-  }
-
-  makeMove(board) {
-    // Implement logic for the player to make a move on the game board
-    throw new Error("makeMove method must be implemented in a concrete class");
-  }
+    constructor(name, symbol) {
+      if (!name || !symbol) {
+        throw new Error("Player name and symbol are required");
+      }
+      this.name = name;
+      this.symbol = symbol;
+    }
+    makeMove() {}
 }
+
 class Move {
     constructor(fromX, fromY, toX, toY) {
       this.fromX = fromX;
